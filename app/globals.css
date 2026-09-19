@@ -159,6 +159,65 @@
   }
 }
 
+/* Animated blueprint circuit traces */
+.circuit-trace path {
+  stroke-dasharray: 14 10;
+  animation: circuit-flow 3.5s linear infinite;
+}
+.circuit-trace path:nth-child(even) {
+  animation-direction: reverse;
+  animation-duration: 4.5s;
+}
+@keyframes circuit-flow {
+  to {
+    stroke-dashoffset: -48;
+  }
+}
+.circuit-node circle {
+  animation: node-pulse 3s ease-in-out infinite;
+  transform-box: fill-box;
+  transform-origin: center;
+}
+.circuit-node circle:nth-child(3n) {
+  animation-delay: 1s;
+}
+.circuit-node circle:nth-child(3n + 1) {
+  animation-delay: 2s;
+}
+@keyframes node-pulse {
+  0%,
+  100% {
+    opacity: 0.4;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.6);
+  }
+}
+
+/* Drifting particles */
+.bg-particle {
+  position: absolute;
+  border-radius: 9999px;
+  opacity: 0.5;
+  animation-name: particle-drift;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+  filter: blur(0.5px);
+}
+@keyframes particle-drift {
+  0%,
+  100% {
+    transform: translateY(0) translateX(0);
+    opacity: 0.15;
+  }
+  50% {
+    transform: translateY(-40px) translateX(16px);
+    opacity: 0.7;
+  }
+}
+
 @keyframes float-slow {
   0%,
   100% {
