@@ -159,7 +159,7 @@ export function RegistrationModal() {
 
     try {
       const { error } = await getSupabase()
-        .from('registrations')
+        .from('regestrations')
         .insert({
           name: form.name.trim(),
           email: form.email.trim(),
@@ -167,7 +167,7 @@ export function RegistrationModal() {
           college: form.college.trim(),
           branch: form.branch.trim(),
           year: form.year,
-          interest: form.interest || 'Both',
+          intrest: form.interest || 'Both',
         })
 
       if (error) {
