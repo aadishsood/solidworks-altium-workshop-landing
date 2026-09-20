@@ -17,7 +17,6 @@ type FormState = {
   college: string
   branch: string
   year: string
-  experience: string
   interest: string
   confirm: boolean
 }
@@ -29,7 +28,6 @@ const initialState: FormState = {
   college: '',
   branch: '',
   year: '',
-  experience: '',
   interest: '',
   confirm: false,
 }
@@ -37,7 +35,6 @@ const initialState: FormState = {
 type Errors = Partial<Record<keyof FormState, string>>
 
 const years = ['1', '2', '3', '4', 'Postgraduate']
-const experienceOptions = ['None', 'Beginner', 'Intermediate', 'Advanced']
 const interestOptions = ['SOLIDWORKS', 'ALTIUM', 'Both']
 
 function validate(state: FormState): Errors {
@@ -407,30 +404,7 @@ export function RegistrationModal() {
                 </Field>
               </div>
 
-              <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-                <Field
-                  id="reg-exp"
-                  label="Previous CAD / PCB Experience"
-                  optional
-                >
-                  <select
-                    id="reg-exp"
-                    value={form.experience}
-                    onChange={(e) =>
-                      update('experience', e.target.value)
-                    }
-                    className={inputClass(false)}
-                  >
-                    <option value="">Select (optional)</option>
-
-                    {experienceOptions.map((o) => (
-                      <option key={o} value={o}>
-                        {o}
-                      </option>
-                    ))}
-                  </select>
-                </Field>
-
+              <div className="grid grid-cols-1 gap-4 sm:grid-cols-1">
                 <Field
                   id="reg-interest"
                   label="Interested Tool"
