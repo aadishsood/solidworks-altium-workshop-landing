@@ -8,7 +8,7 @@ import {
 } from 'react'
 import { CalendarDays, CheckCircle2, Loader2, MapPin, X, AlertCircle } from 'lucide-react'
 import { useRegistration } from '@/components/registration-context'
-import { supabase } from '@/lib/supabase'
+import { getSupabase } from '@/lib/supabase'
 
 type FormState = {
   name: string
@@ -158,7 +158,7 @@ export function RegistrationModal() {
     setServerError('')
 
     try {
-      const { error } = await supabase
+      const { error } = await getSupabase()
         .from('regestrations')
         .insert({
           name: form.name.trim(),
