@@ -8,6 +8,7 @@ import {
 } from 'react'
 import { CalendarDays, CheckCircle2, Loader2, MapPin, X, AlertCircle } from 'lucide-react'
 import { useRegistration } from '@/components/registration-context'
+import { supabase } from '@/lib/supabase'
 
 type FormState = {
   name: string
@@ -41,43 +42,68 @@ const interestOptions = ['SOLIDWORKS', 'ALTIUM', 'Both']
 
 function validate(state: FormState): Errors {
   const errors: Errors = {}
+
   if (!state.name.trim()) errors.name = 'Please enter your full name.'
+
   if (!state.email.trim()) {
     errors.email = 'Please enter your email address.'
   } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(state.email.trim())) {
     errors.email = 'Please enter a valid email address.'
   }
+
   const digits = state.phone.replace(/\D/g, '')
+
   if (!state.phone.trim()) {
     errors.phone = 'Please enter your phone number.'
   } else if (digits.length < 10 || digits.length > 15) {
     errors.phone = 'Please enter a valid phone number.'
   }
-  if (!state.college.trim()) errors.college = 'Please enter your college / institution.'
-  if (!state.branch.trim()) errors.branch = 'Please enter your branch / department.'
-  if (!state.year) errors.year = 'Please select your year of study.'
-  if (!state.confirm) errors.confirm = 'Please confirm the information is correct.'
+
+  if (!state.college.trim()) {
+    errors.college = 'Please enter your college / institution.'
+  }
+
+  if (!state.branch.trim()) {
+    errors.branch = 'Please enter your branch / department.'
+  }
+
+  if (!state.year) {
+    errors.year = 'Please select your year of study.'
+  }
+
+  if (!state.confirm) {
+    errors.confirm = 'Please confirm the information is correct.'
+  }
+
   return errors
 }
 
 export function RegistrationModal() {
   const { isOpen, close } = useRegistration()
+
   const [form, setForm] = useState<FormState>(initialState)
   const [errors, setErrors] = useState<Errors>({})
-  const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle')
+  const [status, setStatus] = useState<
+    'idle' | 'loading' | 'success' | 'error'
+  >('idle')
   const [serverError, setServerError] = useState('')
   const [registeredName, setRegisteredName] = useState('')
+
   const dialogRef = useRef<HTMLDivElement>(null)
   const firstFieldRef = useRef<HTMLInputElement>(null)
 
   useEffect(() => {
     if (!isOpen) return
+
     const onKey = (e: KeyboardEvent) => {
       if (e.key === 'Escape') close()
     }
+
     document.addEventListener('keydown', onKey)
     document.body.style.overflow = 'hidden'
+
     const t = setTimeout(() => firstFieldRef.current?.focus(), 120)
+
     return () => {
       document.removeEventListener('keydown', onKey)
       document.body.style.overflow = ''
@@ -95,14 +121,23 @@ export function RegistrationModal() {
           setServerError('')
         }
       }, 300)
+
       return () => clearTimeout(t)
     }
   }, [isOpen, status])
 
-  const update = <K extends keyof FormState>(key: K, value: FormState[K]) => {
-    setForm((prev) => ({ ...prev, [key]: value }))
+  const update = <K extends keyof FormState>(
+    key: K,
+    value: FormState[K]
+  ) => {
+    setForm((prev) => ({
+      ...prev,
+      [key]: value,
+    }))
+
     setErrors((prev) => {
       if (!prev[key]) return prev
+
       const next = { ...prev }
       delete next[key]
       return next
@@ -111,18 +146,21 @@ export function RegistrationModal() {
 
   const submit = async (e: FormEvent) => {
     e.preventDefault()
+
     const validation = validate(form)
+
     if (Object.keys(validation).length > 0) {
       setErrors(validation)
       return
     }
+
     setStatus('loading')
     setServerError('')
+
     try {
-      const res = await fetch('/api/register', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
+      const { error } = await supabase
+        .from('regestrations')
+        .insert({
           name: form.name.trim(),
           email: form.email.trim(),
           phone: form.phone.trim(),
@@ -131,18 +169,25 @@ export function RegistrationModal() {
           year: form.year,
           experience: form.experience || 'Not specified',
           interest: form.interest || 'Both',
-        }),
-      })
-      const data = await res.json().catch(() => ({}))
-      if (!res.ok || !data?.success) {
-        throw new Error(data?.message || 'Registration failed. Please try again.')
+        })
+
+      if (error) {
+        console.error('Supabase registration error:', error)
+        throw new Error(
+          error.message || 'Registration failed. Please try again.'
+        )
       }
+
       setRegisteredName(form.name.trim())
       setStatus('success')
     } catch (err) {
+      console.error(err)
+
       setStatus('error')
       setServerError(
-        err instanceof Error ? err.message : 'Something went wrong. Please try again.'
+        err instanceof Error
+          ? err.message
+          : 'Something went wrong. Please try again.'
       )
     }
   }
@@ -156,7 +201,6 @@ export function RegistrationModal() {
       aria-modal="true"
       aria-label="Workshop registration"
     >
-      {/* Backdrop */}
       <button
         type="button"
         aria-label="Close registration form"
@@ -164,7 +208,6 @@ export function RegistrationModal() {
         className="absolute inset-0 animate-fade-in bg-background/70 backdrop-blur-md"
       />
 
-      {/* Dialog */}
       <div
         ref={dialogRef}
         className="animate-modal-in relative flex max-h-[92vh] w-full max-w-lg flex-col overflow-hidden rounded-t-3xl border border-border bg-surface shadow-2xl sm:rounded-3xl"
@@ -184,13 +227,16 @@ export function RegistrationModal() {
             <div className="animate-scale-in flex h-20 w-20 items-center justify-center rounded-full bg-cyan/15 text-cyan ring-1 ring-cyan/30">
               <CheckCircle2 className="h-10 w-10" />
             </div>
+
             <h2 className="mt-6 font-[family-name:var(--font-display)] text-2xl font-bold">
               Registration Successful
             </h2>
+
             <p className="mt-3 max-w-sm text-pretty text-sm leading-relaxed text-muted-foreground">
               Thank you for registering for the SOLIDWORKS &amp; ALTIUM
               Workshop.
             </p>
+
             <dl className="mt-6 w-full max-w-xs space-y-2.5 rounded-2xl border border-border bg-background/40 p-5 text-left">
               <div className="flex items-center justify-between gap-4">
                 <dt className="text-xs uppercase tracking-widest text-muted-foreground">
@@ -198,25 +244,30 @@ export function RegistrationModal() {
                 </dt>
                 <dd className="text-sm font-semibold">{registeredName}</dd>
               </div>
+
               <div className="flex items-center justify-between gap-4">
                 <dt className="text-xs uppercase tracking-widest text-muted-foreground">
                   Date
                 </dt>
+
                 <dd className="inline-flex items-center gap-1.5 text-sm font-semibold">
                   <CalendarDays className="h-3.5 w-3.5 text-primary" />
                   26–27 September
                 </dd>
               </div>
+
               <div className="flex items-center justify-between gap-4">
                 <dt className="text-xs uppercase tracking-widest text-muted-foreground">
                   Venue
                 </dt>
+
                 <dd className="inline-flex items-center gap-1.5 text-sm font-semibold">
                   <MapPin className="h-3.5 w-3.5 text-primary" />
                   SRM Campus
                 </dd>
               </div>
             </dl>
+
             <button
               type="button"
               onClick={close}
@@ -232,6 +283,7 @@ export function RegistrationModal() {
               <span className="font-[family-name:var(--font-mono)] text-[10px] uppercase tracking-[0.3em] text-primary">
                 Workshop Registration
               </span>
+
               <h2 className="mt-1 font-[family-name:var(--font-display)] text-xl font-bold">
                 Reserve your seat
               </h2>
@@ -261,7 +313,12 @@ export function RegistrationModal() {
               </Field>
 
               <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-                <Field id="reg-email" label="Email Address" required error={errors.email}>
+                <Field
+                  id="reg-email"
+                  label="Email Address"
+                  required
+                  error={errors.email}
+                >
                   <input
                     id="reg-email"
                     type="email"
@@ -272,7 +329,13 @@ export function RegistrationModal() {
                     placeholder="you@example.com"
                   />
                 </Field>
-                <Field id="reg-phone" label="Phone Number" required error={errors.phone}>
+
+                <Field
+                  id="reg-phone"
+                  label="Phone Number"
+                  required
+                  error={errors.phone}
+                >
                   <input
                     id="reg-phone"
                     type="tel"
@@ -304,7 +367,12 @@ export function RegistrationModal() {
               </Field>
 
               <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-                <Field id="reg-branch" label="Branch / Department" required error={errors.branch}>
+                <Field
+                  id="reg-branch"
+                  label="Branch / Department"
+                  required
+                  error={errors.branch}
+                >
                   <input
                     id="reg-branch"
                     type="text"
@@ -314,7 +382,13 @@ export function RegistrationModal() {
                     placeholder="e.g. Mechanical"
                   />
                 </Field>
-                <Field id="reg-year" label="Year of Study" required error={errors.year}>
+
+                <Field
+                  id="reg-year"
+                  label="Year of Study"
+                  required
+                  error={errors.year}
+                >
                   <select
                     id="reg-year"
                     value={form.year}
@@ -324,6 +398,7 @@ export function RegistrationModal() {
                     <option value="" disabled>
                       Select year
                     </option>
+
                     {years.map((y) => (
                       <option key={y} value={y}>
                         {y === 'Postgraduate' ? y : `Year ${y}`}
@@ -334,14 +409,21 @@ export function RegistrationModal() {
               </div>
 
               <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-                <Field id="reg-exp" label="Previous CAD / PCB Experience" optional>
+                <Field
+                  id="reg-exp"
+                  label="Previous CAD / PCB Experience"
+                  optional
+                >
                   <select
                     id="reg-exp"
                     value={form.experience}
-                    onChange={(e) => update('experience', e.target.value)}
+                    onChange={(e) =>
+                      update('experience', e.target.value)
+                    }
                     className={inputClass(false)}
                   >
                     <option value="">Select (optional)</option>
+
                     {experienceOptions.map((o) => (
                       <option key={o} value={o}>
                         {o}
@@ -349,14 +431,22 @@ export function RegistrationModal() {
                     ))}
                   </select>
                 </Field>
-                <Field id="reg-interest" label="Interested Tool" optional>
+
+                <Field
+                  id="reg-interest"
+                  label="Interested Tool"
+                  optional
+                >
                   <select
                     id="reg-interest"
                     value={form.interest}
-                    onChange={(e) => update('interest', e.target.value)}
+                    onChange={(e) =>
+                      update('interest', e.target.value)
+                    }
                     className={inputClass(false)}
                   >
                     <option value="">Select (optional)</option>
+
                     {interestOptions.map((o) => (
                       <option key={o} value={o}>
                         {o}
@@ -371,15 +461,21 @@ export function RegistrationModal() {
                   <input
                     type="checkbox"
                     checked={form.confirm}
-                    onChange={(e) => update('confirm', e.target.checked)}
+                    onChange={(e) =>
+                      update('confirm', e.target.checked)
+                    }
                     className="mt-0.5 h-4 w-4 shrink-0 rounded border-border bg-background text-primary accent-[var(--primary)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring"
                   />
+
                   <span className="text-sm text-muted-foreground">
                     I confirm that the information provided is correct.
                   </span>
                 </label>
+
                 {errors.confirm && (
-                  <p className="mt-1.5 text-xs text-destructive">{errors.confirm}</p>
+                  <p className="mt-1.5 text-xs text-destructive">
+                    {errors.confirm}
+                  </p>
                 )}
               </div>
 
@@ -446,15 +542,25 @@ function Field({
         className="mb-1.5 flex items-center gap-1.5 text-xs font-medium uppercase tracking-wide text-muted-foreground"
       >
         {label}
-        {required && <span className="text-primary">*</span>}
+
+        {required && (
+          <span className="text-primary">*</span>
+        )}
+
         {optional && (
           <span className="font-normal normal-case tracking-normal text-muted-foreground/60">
             (optional)
           </span>
         )}
       </label>
+
       {children}
-      {error && <p className="mt-1.5 text-xs text-destructive">{error}</p>}
+
+      {error && (
+        <p className="mt-1.5 text-xs text-destructive">
+          {error}
+        </p>
+      )}
     </div>
   )
 }
