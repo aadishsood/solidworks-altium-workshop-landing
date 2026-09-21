@@ -63,27 +63,27 @@
 
 .light {
   color-scheme: light;
-  --background: #f4f7fb;
+  --background: #eef5fb;
   --surface: #ffffff;
-  --foreground: #08111f;
+  --foreground: #10263d;
   --card: #ffffff;
-  --card-foreground: #08111f;
+  --card-foreground: #10263d;
   --popover: #ffffff;
-  --popover-foreground: #08111f;
-  --primary: #176fe5;
+  --popover-foreground: #10263d;
+  --primary: #176fd1;
   --primary-foreground: #ffffff;
-  --secondary: #b48617;
+  --secondary: #b7791f;
   --secondary-foreground: #ffffff;
-  --muted: #e9eef5;
-  --muted-foreground: #596575;
-  --accent: #eef2f8;
-  --accent-foreground: #08111f;
+  --muted: #e2edf6;
+  --muted-foreground: #516b82;
+  --accent: #dbeaf5;
+  --accent-foreground: #10263d;
   --destructive: #dc2626;
-  --cyan: #0891b2;
-  --gold: #b48617;
-  --border: rgba(8, 17, 31, 0.1);
-  --input: rgba(8, 17, 31, 0.15);
-  --ring: #176fe5;
+  --cyan: #078fa8;
+  --gold: #b7791f;
+  --border: rgba(24, 83, 120, 0.16);
+  --input: rgba(24, 83, 120, 0.18);
+  --ring: #176fd1;
 }
 
 @layer base {
@@ -218,6 +218,38 @@
 .theme-select option {
   background: #0c1b2a;
   color: #f4f8fc;
+}
+.light .glass-card {
+  background:
+    linear-gradient(135deg, color-mix(in srgb, var(--surface) 88%, transparent), color-mix(in srgb, var(--background) 72%, transparent)),
+    linear-gradient(115deg, color-mix(in srgb, var(--primary) 6%, transparent), transparent 42%);
+  box-shadow: 0 24px 70px -44px rgba(24, 83, 120, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.9);
+}
+.light .bg-scanlines {
+  background: repeating-linear-gradient(180deg, transparent 0, transparent 5px, rgba(24, 83, 120, 0.025) 6px, transparent 7px);
+  mix-blend-mode: multiply;
+}
+.light .bg-noise {
+  background-image: radial-gradient(rgba(24, 83, 120, 0.45) 0.7px, transparent 0.7px);
+}
+.light .bg-orb {
+  opacity: 0.09;
+}
+.light .bg-orbit {
+  opacity: 0.3;
+}
+.light .theme-select {
+  color-scheme: light;
+  background:
+    linear-gradient(135deg, color-mix(in srgb, var(--surface) 94%, transparent), color-mix(in srgb, var(--background) 86%, transparent));
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.9);
+}
+.light .theme-select:hover {
+  background: var(--surface);
+}
+.light .theme-select option {
+  background: #ffffff;
+  color: #10263d;
 }
 .select-chevron {
   position: absolute;
