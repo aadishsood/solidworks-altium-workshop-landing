@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-labelledby="title desc">
+  <title id="title">Workshop favicon</title>
+  <desc id="desc">A blue and cyan integrated circuit chip with a gold circuit trace</desc>
+  <defs>
+    <linearGradient id="bg" x1="8" y1="8" x2="56" y2="56" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#101a2d"/>
+      <stop offset="1" stop-color="#05070b"/>
+    </linearGradient>
+    <linearGradient id="chip" x1="16" y1="14" x2="48" y2="50" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#47b8ff"/>
+      <stop offset="1" stop-color="#2f8cff"/>
+    </linearGradient>
+  </defs>
+  <rect width="64" height="64" rx="14" fill="url(#bg)"/>
+  <path d="M8 22h8M8 32h8M8 42h8M48 22h8M48 32h8M48 42h8M22 8v8M32 8v8M42 8v8M22 48v8M32 48v8M42 48v8" stroke="#47d8ff" stroke-width="2.5" stroke-linecap="round"/>
+  <rect x="16" y="16" width="32" height="32" rx="6" fill="#09111e" stroke="url(#chip)" stroke-width="3"/>
+  <rect x="24" y="24" width="16" height="16" rx="3" fill="url(#chip)"/>
+  <path d="M29 29h6v6h-6zM40 42h8" stroke="#f3bd4b" stroke-width="2.5" stroke-linecap="round"/>
+  <circle cx="45" cy="42" r="2" fill="#f3bd4b"/>
+</svg>
