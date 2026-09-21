@@ -6,7 +6,7 @@ import {
   useState,
   type FormEvent,
 } from 'react'
-import { CalendarDays, CheckCircle2, Loader2, MapPin, X, AlertCircle } from 'lucide-react'
+import { CalendarDays, CheckCircle2, ChevronDown, Loader2, MapPin, X, AlertCircle } from 'lucide-react'
 import { useRegistration } from '@/components/registration-context'
 
 type FormState = {
@@ -387,22 +387,25 @@ export function RegistrationModal() {
                   required
                   error={errors.year}
                 >
-                  <select
-                    id="reg-year"
-                    value={form.year}
-                    onChange={(e) => update('year', e.target.value)}
-                    className={inputClass(!!errors.year)}
-                  >
-                    <option value="" disabled>
-                      Select year
-                    </option>
-
-                    {years.map((y) => (
-                      <option key={y} value={y}>
-                        {y === 'Postgraduate' ? y : `Year ${y}`}
+                  <div className="select-wrap">
+                    <select
+                      id="reg-year"
+                      value={form.year}
+                      onChange={(e) => update('year', e.target.value)}
+                      className={`${inputClass(!!errors.year)} theme-select`}
+                    >
+                      <option value="" disabled>
+                        Select year
                       </option>
-                    ))}
-                  </select>
+
+                      {years.map((y) => (
+                        <option key={y} value={y}>
+                          {y === 'Postgraduate' ? y : `Year ${y}`}
+                        </option>
+                      ))}
+                    </select>
+                    <ChevronDown aria-hidden className="select-chevron" />
+                  </div>
                 </Field>
               </div>
 
@@ -412,22 +415,25 @@ export function RegistrationModal() {
                   label="Interested Tool"
                   optional
                 >
-                  <select
-                    id="reg-interest"
-                    value={form.interest}
-                    onChange={(e) =>
-                      update('interest', e.target.value)
-                    }
-                    className={inputClass(false)}
-                  >
-                    <option value="">Select (optional)</option>
+                  <div className="select-wrap">
+                    <select
+                      id="reg-interest"
+                      value={form.interest}
+                      onChange={(e) =>
+                        update('interest', e.target.value)
+                      }
+                      className={`${inputClass(false)} theme-select`}
+                    >
+                      <option value="">Select (optional)</option>
 
-                    {interestOptions.map((o) => (
-                      <option key={o} value={o}>
-                        {o}
-                      </option>
-                    ))}
-                  </select>
+                      {interestOptions.map((o) => (
+                        <option key={o} value={o}>
+                          {o}
+                        </option>
+                      ))}
+                    </select>
+                    <ChevronDown aria-hidden className="select-chevron" />
+                  </div>
                 </Field>
               </div>
 

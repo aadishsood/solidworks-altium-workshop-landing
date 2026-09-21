@@ -37,27 +37,27 @@
 /* Dark is the default identity of the site */
 :root {
   color-scheme: dark;
-  --background: #04070d;
-  --surface: #0b1420;
+  --background: #06111c;
+  --surface: #0c1b2a;
   --foreground: #f5f7fb;
   --card: #0b111a;
   --card-foreground: #f5f7fb;
   --popover: #0b111a;
   --popover-foreground: #f5f7fb;
-  --primary: #42a5ff;
-  --primary-foreground: #04070d;
-  --secondary: #e3b84d;
+  --primary: #38a4ff;
+  --primary-foreground: #03111e;
+  --secondary: #f4be4f;
   --secondary-foreground: #100a01;
   --muted: #121a26;
   --muted-foreground: #8d96a5;
   --accent: #101825;
   --accent-foreground: #f5f7fb;
   --destructive: #ef4444;
-  --cyan: #48e0ff;
-  --gold: #f4c451;
-  --border: rgba(157, 207, 255, 0.13);
-  --input: rgba(255, 255, 255, 0.12);
-  --ring: #2f8cff;
+  --cyan: #35d9e8;
+  --gold: #f4be4f;
+  --border: rgba(130, 190, 230, 0.16);
+  --input: rgba(130, 190, 230, 0.18);
+  --ring: #38a4ff;
   --radius: 0.75rem;
 }
 
@@ -194,6 +194,45 @@
 .glass-card:hover::after {
   opacity: 0.75;
   transform: translate(-18%, 18%);
+}
+.select-wrap {
+  position: relative;
+}
+.theme-select {
+  appearance: none;
+  color-scheme: dark;
+  cursor: pointer;
+  padding-right: 2.75rem;
+  background:
+    linear-gradient(135deg, color-mix(in srgb, var(--surface) 86%, transparent), color-mix(in srgb, var(--background) 70%, transparent));
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.045);
+}
+.theme-select:hover {
+  border-color: color-mix(in srgb, var(--cyan) 55%, var(--border));
+  background: linear-gradient(135deg, color-mix(in srgb, var(--surface) 96%, transparent), color-mix(in srgb, var(--background) 70%, transparent));
+}
+.theme-select:focus {
+  border-color: var(--cyan);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--cyan) 18%, transparent), inset 0 1px 0 rgba(255, 255, 255, 0.06);
+}
+.theme-select option {
+  background: #0c1b2a;
+  color: #f4f8fc;
+}
+.select-chevron {
+  position: absolute;
+  top: 50%;
+  right: 0.9rem;
+  width: 1rem;
+  height: 1rem;
+  pointer-events: none;
+  color: var(--cyan);
+  transform: translateY(-50%);
+  transition: transform 200ms ease, color 200ms ease;
+}
+.select-wrap:focus-within .select-chevron {
+  color: var(--primary);
+  transform: translateY(-50%) rotate(180deg);
 }
 .bg-aurora {
   background:
