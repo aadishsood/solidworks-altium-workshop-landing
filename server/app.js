@@ -1,12 +1,12 @@
-import express, { type Request, type Response } from 'express'
-import { createClient } from '@supabase/supabase-js'
+const express = require('express')
+const { createClient } = require('@supabase/supabase-js')
 
 const app = express()
 const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
 
 app.use(express.json({ limit: '10kb' }))
 
-function jsonError(res: Response, message: string, status = 400) {
+function jsonError(res, message, status = 400) {
   return res.status(status).json({ success: false, message })
 }
 
@@ -14,8 +14,8 @@ app.get(['/api/health', '/health'], (_req, res) => {
   res.status(200).json({ success: true, service: 'registration-api' })
 })
 
-app.post(['/api/register', '/register', '/'], async (req: Request, res: Response) => {
-  const body = req.body as Record<string, unknown>
+app.post(['/api/register', '/register', '/'], async (req, res) => {
+  const body = req.body && typeof req.body === 'object' ? req.body : {}
   const name = typeof body.name === 'string' ? body.name.trim() : ''
   const email = typeof body.email === 'string' ? body.email.trim() : ''
   const phone = typeof body.phone === 'string' ? body.phone.trim() : ''
@@ -69,4 +69,4 @@ app.post(['/api/register', '/register', '/'], async (req: Request, res: Response
 
 app.use((_req, res) => jsonError(res, 'Endpoint not found.', 404))
 
-export default app
+module.exports = app
