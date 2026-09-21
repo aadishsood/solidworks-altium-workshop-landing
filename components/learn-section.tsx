@@ -60,7 +60,7 @@ export function LearnSection() {
         <div className="mt-16 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {items.map((item, i) => (
             <Reveal key={item.num} delay={(i % 3) * 100} variant="scale">
-              <article className="group relative h-full overflow-hidden rounded-2xl border border-border bg-surface/50 p-7 backdrop-blur-sm transition-all duration-300 hover:-translate-y-2 hover:border-primary/50 hover:shadow-[0_24px_70px_-30px_var(--primary)]">
+              <article className="glass-card group relative h-full rounded-2xl border border-border p-7 transition-all duration-300 hover:-translate-y-2 hover:border-primary/50 hover:shadow-[0_24px_70px_-30px_var(--primary)]">
                 <span className="pointer-events-none absolute -right-2 -top-4 font-[family-name:var(--font-display)] text-7xl font-bold text-foreground/[0.05] transition-colors duration-300 group-hover:text-primary/15">
                   {item.num}
                 </span>

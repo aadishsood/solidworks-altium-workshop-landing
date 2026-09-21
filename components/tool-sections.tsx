@@ -57,7 +57,7 @@ function ToolCard({
   return (
     <Reveal variant={reverse ? 'right' : 'left'}>
       <article
-        className={`group relative grid grid-cols-1 items-center gap-8 rounded-3xl border border-border bg-surface/40 p-6 backdrop-blur-sm transition-all duration-500 hover:-translate-y-1.5 md:grid-cols-2 md:p-8 ${accentBorder} ${accentGlow}`}
+        className={`glass-card group relative grid grid-cols-1 items-center gap-8 rounded-3xl border border-border p-6 transition-all duration-500 hover:-translate-y-1.5 md:grid-cols-2 md:p-8 ${accentBorder} ${accentGlow}`}
       >
         {/* Image */}
         <div
@@ -114,7 +114,7 @@ function ToolCard({
             {features.map((feature, i) => (
               <li
                 key={feature}
-                className="flex items-center gap-2.5 text-sm text-foreground/90 opacity-0 transition-all duration-500 group-hover:translate-x-0 group-hover:opacity-100 [transform:translateX(-8px)]"
+                className="flex translate-x-0 items-center gap-2.5 text-sm text-foreground/90 opacity-100 transition-all duration-500 lg:translate-x-[-8px] lg:opacity-0 lg:group-hover:translate-x-0 lg:group-hover:opacity-100"
                 style={{ transitionDelay: `${i * 60}ms` }}
               >
                 <span

@@ -3,6 +3,13 @@ export function AnimatedBackground() {
     <div aria-hidden className="pointer-events-none fixed inset-0 -z-10 overflow-hidden">
       {/* base wash */}
       <div className="absolute inset-0 bg-background" />
+      {/* layered aurora lighting for depth */}
+      <div className="bg-aurora absolute inset-[-20%] opacity-80" />
+      <div className="bg-orb bg-orb-primary absolute -left-32 top-[12%] h-80 w-80" />
+      <div className="bg-orb bg-orb-gold absolute -right-36 top-[42%] h-96 w-96" />
+      <div className="bg-orb bg-orb-cyan absolute bottom-[-8%] left-[28%] h-72 w-72" />
+      <div className="bg-scanlines absolute inset-0 opacity-30" />
+      <div className="bg-noise absolute inset-0 opacity-[0.035]" />
 
       {/* moving tech grid */}
       <div className="tech-grid absolute inset-0 opacity-40 [mask-image:radial-gradient(ellipse_at_center,black_10%,transparent_75%)]" />
@@ -68,6 +75,8 @@ export function AnimatedBackground() {
         className="animate-pulse-glow absolute left-1/2 bottom-[-10%] h-[420px] w-[420px] -translate-x-1/2 rounded-full bg-cyan/15 blur-[120px]"
         style={{ animationDelay: '4s' }}
       />
+      <div className="bg-orbit bg-orbit-one absolute left-[8%] top-[24%] h-72 w-72 rounded-full border border-primary/10" />
+      <div className="bg-orbit bg-orbit-two absolute right-[4%] top-[58%] h-96 w-96 rounded-full border border-cyan/10" />
 
       {/* vignette for depth */}
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_55%,color-mix(in_srgb,var(--background)_85%,black)_100%)]" />
