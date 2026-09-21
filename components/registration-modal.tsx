@@ -8,7 +8,6 @@ import {
 } from 'react'
 import { CalendarDays, CheckCircle2, Loader2, MapPin, X, AlertCircle } from 'lucide-react'
 import { useRegistration } from '@/components/registration-context'
-import { getSupabase } from '@/lib/supabase'
 
 type FormState = {
   name: string
@@ -155,23 +154,26 @@ export function RegistrationModal() {
     setServerError('')
 
     try {
-      const { error } = await getSupabase()
-        .from('regestrations')
-        .insert({
+      const response = await fetch('/api/register', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
           name: form.name.trim(),
           email: form.email.trim(),
           phone: form.phone.trim(),
           college: form.college.trim(),
           branch: form.branch.trim(),
           year: form.year,
-          intrest: form.interest || 'Both',
-        })
+          interest: form.interest || 'Both',
+        }),
+      })
+      const result = (await response.json()) as {
+        success?: boolean
+        message?: string
+      }
 
-      if (error) {
-        console.error('Supabase registration error:', error)
-        throw new Error(
-          error.message || 'Registration failed. Please try again.'
-        )
+      if (!response.ok || !result.success) {
+        throw new Error(result.message || 'Registration failed. Please try again.')
       }
 
       setRegisteredName(form.name.trim())
