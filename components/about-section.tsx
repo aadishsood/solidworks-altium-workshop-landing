@@ -9,13 +9,13 @@ const features = [
   },
   {
     icon: Wrench,
-    title: 'Hands-On',
+    title: 'Hands-On Learning',
     body: 'Learn by actually creating designs — not just watching slides.',
   },
   {
     icon: Factory,
-    title: 'Industry Focused',
-    body: 'Understand practical engineering workflows used in the real world.',
+    title: 'Practical Engineering Workflows',
+    body: 'Understand practical engineering workflows used in real design work.',
   },
 ]
 
@@ -40,6 +40,10 @@ export function AboutSection() {
               design workflows using SOLIDWORKS and ALTIUM. The focus is on
               understanding the tools, following real design processes and
               applying the concepts through hands-on activities.
+            </p>
+            <p className="mx-auto mt-5 max-w-2xl text-sm font-medium leading-relaxed text-foreground/80 sm:text-base">
+              Open to students interested in Mechanical Design, Electronics,
+              ECE, EEE, Mechatronics and related fields.
             </p>
           </Reveal>
         </div>

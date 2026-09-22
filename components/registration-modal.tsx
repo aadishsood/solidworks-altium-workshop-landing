@@ -250,7 +250,7 @@ export function RegistrationModal() {
 
                 <dd className="inline-flex items-center gap-1.5 text-sm font-semibold">
                   <CalendarDays className="h-3.5 w-3.5 text-primary" />
-                  26–27 September
+                  26–27 September 2026
                 </dd>
               </div>
 

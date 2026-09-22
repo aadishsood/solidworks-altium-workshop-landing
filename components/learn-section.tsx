@@ -6,37 +6,37 @@ const items = [
     num: '01',
     icon: Box,
     title: '3D Modelling',
-    body: 'Understand how parts are created using CAD tools.',
+    body: 'Create and modify basic mechanical parts.',
   },
   {
     num: '02',
     icon: Layers,
     title: 'Assembly Design',
-    body: 'Learn how individual components come together.',
+    body: 'Understand how components come together in an assembly.',
   },
   {
     num: '03',
     icon: FileText,
     title: 'Engineering Drawings',
-    body: 'Create useful technical documentation from models.',
+    body: 'Understand technical drawings and dimensions.',
   },
   {
     num: '04',
     icon: Workflow,
     title: 'Schematic Design',
-    body: 'Understand the beginning of a PCB design workflow.',
+    body: 'Understand the fundamentals of electronic schematic design.',
   },
   {
     num: '05',
     icon: CircuitBoard,
     title: 'PCB Layout',
-    body: 'Learn placement, routing and board organisation.',
+    body: 'Learn the basics of component placement and routing.',
   },
   {
     num: '06',
     icon: Rocket,
     title: 'Hands-On Project',
-    body: 'Apply the concepts to a practical mini project.',
+    body: 'Apply the concepts through a guided practical activity.',
   },
 ]
 

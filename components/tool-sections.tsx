@@ -2,7 +2,7 @@
 
 import Image from 'next/image'
 import { useRef, type MouseEvent } from 'react'
-import { Check } from 'lucide-react'
+import { ArrowDown, Check } from 'lucide-react'
 import { Reveal } from '@/components/reveal'
 
 type ToolCardProps = {
@@ -159,12 +159,10 @@ export function ToolSections() {
             image="/solidworks-hero.png"
             imageAlt="SOLIDWORKS exploded-view 3D CAD assembly with blue construction lines"
             features={[
-              '3D part modelling',
+              '3D Part Modelling',
               'Sketching',
-              'Features & operations',
-              'Assembly design',
-              'Engineering drawings',
-              'Workflow best practices',
+              'Assembly Design',
+              'Engineering Drawings',
             ]}
           />
           <ToolCard
@@ -175,15 +173,30 @@ export function ToolSections() {
             imageAlt="ALTIUM PCB layout with routed traces and component footprints"
             reverse
             features={[
-              'Schematic creation',
-              'Component selection',
-              'PCB layout',
-              'Component placement',
-              'Routing',
-              'Design rules',
+              'Schematic Design',
+              'Component Placement',
+              'PCB Layout',
+              'Routing Basics',
             ]}
           />
         </div>
+
+        <Reveal delay={120}>
+          <div className="mx-auto mt-14 flex max-w-4xl flex-col items-center justify-center gap-3 rounded-2xl border border-border bg-surface/40 px-5 py-6 text-center backdrop-blur-sm sm:flex-row sm:gap-4 sm:px-8">
+            {[
+              { label: '3D Mechanical Design', accent: 'text-primary' },
+              { label: 'Electronics Design', accent: 'text-cyan' },
+              { label: 'Product Development', accent: 'text-gold' },
+            ].map((step, i) => (
+              <div key={step.label} className="flex flex-col items-center gap-3 sm:flex-row sm:gap-4">
+                <span className={`font-[family-name:var(--font-mono)] text-xs uppercase tracking-[0.2em] ${step.accent}`}>
+                  {step.label}
+                </span>
+                {i < 2 && <ArrowDown className="h-4 w-4 text-muted-foreground sm:-rotate-90" aria-hidden />}
+              </div>
+            ))}
+          </div>
+        </Reveal>
       </div>
     </section>
   )

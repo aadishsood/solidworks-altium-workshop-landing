@@ -23,9 +23,9 @@ const jetbrainsMono = JetBrains_Mono({
 })
 
 export const metadata: Metadata = {
-  title: 'SOLIDWORKS & ALTIUM Workshop — 26–27 September | SRM Campus',
+  title: 'SOLIDWORKS & ALTIUM Workshop — 26–27 September 2026 | SRM Campus',
   description:
-    'A premium two-day hands-on workshop on SOLIDWORKS 3D CAD and ALTIUM PCB design. 26–27 September, 10:00 AM – 3:00 PM at SRM Campus. Learn, design and build.',
+    'A premium two-day hands-on workshop on SOLIDWORKS 3D CAD and ALTIUM PCB design. 26–27 September 2026, 10:00 AM – 3:00 PM at SRM Campus. Learn, design and build.',
   keywords: [
     'SOLIDWORKS',
     'ALTIUM',
@@ -39,7 +39,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'SOLIDWORKS & ALTIUM Workshop',
     description:
-      'Hands-on CAD and PCB design workshop. 26–27 September at SRM Campus.',
+      'Hands-on CAD and PCB design workshop. 26–27 September 2026 at SRM Campus.',
     type: 'website',
   },
 }

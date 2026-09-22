@@ -6,11 +6,10 @@ import { ThemeToggle } from '@/components/theme-toggle'
 import { RegisterButton } from '@/components/register-button'
 
 const links = [
-  { label: 'Home', href: '#home' },
   { label: 'About', href: '#about' },
-  { label: "What You'll Learn", href: '#learn' },
+  { label: 'Tools', href: '#workshop' },
+  { label: 'Curriculum', href: '#learn' },
   { label: 'Schedule', href: '#schedule' },
-  { label: 'Workshop', href: '#workshop' },
   { label: 'FAQ', href: '#faq' },
 ]
 
@@ -66,8 +65,9 @@ export function Navbar() {
           <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary/15 text-primary ring-1 ring-primary/30 transition-all duration-300 group-hover:ring-primary/60">
             <Cpu className="h-4 w-4" />
           </span>
-          <span>
-            WORK<span className="text-primary">SHOP</span>
+          <span className="whitespace-nowrap">
+            SOLIDWORKS <span className="text-muted-foreground">×</span>{' '}
+            <span className="text-gold">ALTIUM</span>
           </span>
         </a>
 

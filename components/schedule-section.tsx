@@ -48,7 +48,7 @@ const schedule: {
 ]
 
 const meta = [
-  { icon: CalendarDays, label: '26–27 September' },
+  { icon: CalendarDays, label: '26–27 September 2026' },
   { icon: Clock, label: '10:00 AM – 3:00 PM' },
   { icon: MapPin, label: 'SRM Campus' },
 ]

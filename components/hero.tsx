@@ -29,7 +29,7 @@ function Staged({
 }
 
 const eventInfo = [
-  { icon: CalendarDays, label: 'Date', value: '26–27 September' },
+  { icon: CalendarDays, label: 'Date', value: '26–27 September 2026' },
   { icon: Clock, label: 'Time', value: '10:00 AM – 3:00 PM' },
   { icon: MapPin, label: 'Venue', value: 'SRM Campus' },
 ]
@@ -60,7 +60,7 @@ export function Hero() {
           <Staged loaded={loaded} delay={120}>
             <span className="inline-flex items-center gap-2 rounded-full border border-border bg-surface/60 px-4 py-1.5 font-[family-name:var(--font-mono)] text-xs font-medium tracking-[0.25em] text-muted-foreground">
               <span className="h-1.5 w-1.5 rounded-full bg-cyan animate-pulse" />
-              LEARN • DESIGN • BUILD
+              2-DAY HANDS-ON ENGINEERING WORKSHOP
             </span>
           </Staged>
 
@@ -109,11 +109,11 @@ export function Hero() {
             <div className="mt-9 flex flex-col items-center gap-3 sm:flex-row lg:justify-start">
               <RegisterButton size="lg" />
               <a
-                href="#workshop"
+                href="#learn"
                 data-cursor="hover"
                 className="group inline-flex items-center gap-2 rounded-full border border-border bg-surface/40 px-6 py-3.5 text-sm font-semibold text-foreground transition-all duration-300 hover:-translate-y-0.5 hover:border-primary/50"
               >
-                Explore Workshop
+                Explore Curriculum
                 <ArrowDown className="h-4 w-4 transition-transform duration-300 group-hover:translate-y-1" />
               </a>
             </div>

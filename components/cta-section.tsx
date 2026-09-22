@@ -1,4 +1,4 @@
-import { CalendarDays, MapPin } from 'lucide-react'
+import { CalendarDays, Clock, MapPin } from 'lucide-react'
 import { Reveal } from '@/components/reveal'
 import { RegisterButton } from '@/components/register-button'
 
@@ -18,7 +18,7 @@ export function CtaSection() {
             />
             <div className="relative">
               <span className="font-[family-name:var(--font-mono)] text-xs uppercase tracking-[0.3em] text-cyan">
-                Limited Seats
+                Registration
               </span>
               <h2 className="mx-auto mt-4 max-w-2xl text-balance font-[family-name:var(--font-display)] text-3xl font-bold tracking-tight sm:text-4xl lg:text-5xl">
                 Ready to design and build with{' '}
@@ -28,9 +28,8 @@ export function CtaSection() {
                 &amp; <span className="text-gold">ALTIUM</span>?
               </h2>
               <p className="mx-auto mt-5 max-w-xl text-pretty text-muted-foreground">
-                Reserve your spot for the two-day hands-on workshop. Bring your
-                curiosity — we&apos;ll bring the tools, the guidance and the
-                projects.
+                Join the two-day SOLIDWORKS &amp; ALTIUM workshop and explore
+                practical CAD and PCB design workflows.
               </p>
 
               <div className="mt-9 flex justify-center">
@@ -40,7 +39,11 @@ export function CtaSection() {
               <div className="mt-8 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-sm text-muted-foreground">
                 <span className="inline-flex items-center gap-2">
                   <CalendarDays className="h-4 w-4 text-primary" />
-                  26–27 September
+                  26–27 September 2026
+                </span>
+                <span className="inline-flex items-center gap-2">
+                  <Clock className="h-4 w-4 text-primary" />
+                  10:00 AM – 3:00 PM
                 </span>
                 <span className="inline-flex items-center gap-2">
                   <MapPin className="h-4 w-4 text-primary" />
