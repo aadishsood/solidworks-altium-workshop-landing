@@ -5,6 +5,8 @@ export function AnimatedBackground() {
       <div className="absolute inset-0 bg-background" />
       {/* layered aurora lighting for depth */}
       <div className="bg-aurora absolute inset-[-20%] opacity-80" />
+      <div className="bg-mesh absolute inset-[-12%]" />
+      <div className="bg-spotlight absolute inset-0" />
       <div className="bg-orb bg-orb-primary absolute -left-32 top-[12%] h-80 w-80" />
       <div className="bg-orb bg-orb-gold absolute -right-36 top-[42%] h-96 w-96" />
       <div className="bg-orb bg-orb-cyan absolute bottom-[-8%] left-[28%] h-72 w-72" />

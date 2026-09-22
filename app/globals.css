@@ -147,7 +147,7 @@
       color-mix(in srgb, var(--primary) 14%, transparent) 1px,
       transparent 1px
     );
-  background-size: 48px 48px;
+  background-size: 56px 56px;
   animation: grid-pan 24s linear infinite;
 }
 @keyframes grid-pan {
@@ -235,6 +235,14 @@
 .light .bg-orb {
   opacity: 0.09;
 }
+.light .bg-mesh {
+  opacity: 0.28;
+  mix-blend-mode: multiply;
+}
+.light .bg-spotlight {
+  opacity: 0.3;
+  mix-blend-mode: multiply;
+}
 .light .bg-orbit {
   opacity: 0.3;
 }
@@ -274,6 +282,24 @@
   filter: blur(16px) saturate(125%);
   animation: aurora-shift 18s ease-in-out infinite alternate;
 }
+.bg-mesh {
+  background:
+    radial-gradient(ellipse at 12% 18%, color-mix(in srgb, var(--primary) 18%, transparent), transparent 32%),
+    radial-gradient(ellipse at 86% 22%, color-mix(in srgb, var(--gold) 13%, transparent), transparent 30%),
+    radial-gradient(ellipse at 66% 64%, color-mix(in srgb, var(--cyan) 14%, transparent), transparent 28%),
+    radial-gradient(ellipse at 28% 86%, color-mix(in srgb, var(--primary) 10%, transparent), transparent 34%);
+  filter: blur(34px) saturate(135%);
+  opacity: 0.78;
+  transform: translate3d(0, 0, 0) scale(1.04);
+  animation: mesh-drift 24s ease-in-out infinite alternate;
+}
+.bg-spotlight {
+  background:
+    radial-gradient(ellipse at 50% -10%, color-mix(in srgb, var(--primary) 12%, transparent), transparent 44%),
+    linear-gradient(118deg, transparent 20%, color-mix(in srgb, var(--cyan) 3%, transparent) 48%, transparent 72%);
+  opacity: 0.72;
+  mix-blend-mode: screen;
+}
 .bg-orb {
   border-radius: 9999px;
   filter: blur(50px);
@@ -301,6 +327,11 @@
 @keyframes aurora-shift {
   0% { transform: translate3d(-2%, -1%, 0) scale(1); }
   100% { transform: translate3d(2%, 2%, 0) scale(1.08); }
+}
+@keyframes mesh-drift {
+  0% { transform: translate3d(-1.5%, -1%, 0) scale(1.04); }
+  50% { transform: translate3d(1%, 1.5%, 0) scale(1.08); }
+  100% { transform: translate3d(2%, -0.5%, 0) scale(1.05); }
 }
 @keyframes orb-drift {
   0% { transform: translate3d(-10px, 8px, 0) scale(0.96); }
