@@ -35,7 +35,6 @@ export const metadata: Metadata = {
     '3D modelling',
     'SRM Campus',
   ],
-  generator: 'v0.app',
   openGraph: {
     title: 'SOLIDWORKS & ALTIUM Workshop',
     description:
