@@ -56,6 +56,7 @@ export function Hero() {
       id="home"
       className="relative flex min-h-screen items-center overflow-hidden pt-24 pb-16"
     >
+      <ShapeWaves className="pointer-events-none absolute inset-x-0 top-24 h-[34rem] opacity-90" />
       <div className="mx-auto grid w-full max-w-7xl grid-cols-1 items-center gap-12 px-4 sm:px-6 lg:grid-cols-[1.05fr_0.95fr] lg:px-8">
         {/* Left: copy */}
         <div className="relative z-10 text-center lg:text-left">
@@ -124,7 +125,6 @@ export function Hero() {
 
         {/* Right: layered visuals */}
         <div className="relative z-10">
-          <ShapeWaves className="pointer-events-none absolute -inset-x-24 -inset-y-16 opacity-60" />
           <div
             className={`relative mx-auto aspect-square w-full max-w-[520px] transition-all duration-1000 ease-out ${
               loaded ? 'scale-100 opacity-100' : 'scale-90 opacity-0'
