@@ -4,6 +4,8 @@ import Image from 'next/image'
 import { useRef, type MouseEvent } from 'react'
 import { ArrowDown, Check } from 'lucide-react'
 import { Reveal } from '@/components/reveal'
+import { ElectricBorder } from '@/components/electric-border'
+import { ShapeWaves } from '@/components/shape-waves'
 
 type ToolCardProps = {
   accent: 'primary' | 'gold'
@@ -69,28 +71,19 @@ function ToolCard({
           }`}
         >
           <div
-            className="relative aspect-[4/3] overflow-hidden rounded-2xl border border-border transition-transform duration-300 ease-out will-change-transform"
-            style={{
-              transform:
-                'rotateX(var(--rx,0)) rotateY(var(--ry,0)) translateZ(0)',
-            }}
+            className="relative aspect-[4/3] transition-transform duration-300 ease-out will-change-transform"
+            style={{ transform: 'rotateX(var(--rx,0)) rotateY(var(--ry,0)) translateZ(0)' }}
           >
-            <Image
-              src={image}
-              alt={imageAlt}
-              fill
-              loading="lazy"
-              sizes="(max-width: 768px) 90vw, 45vw"
-              className="scale-110 object-cover transition-transform duration-500 will-change-transform"
-              style={{ transform: 'translate(var(--tx,0), var(--ty,0))' }}
-            />
-            <div
-              className={`absolute inset-0 opacity-0 transition-opacity duration-500 group-hover:opacity-100 ${
-                isGold
-                  ? 'bg-gradient-to-tr from-gold/25 to-transparent'
-                  : 'bg-gradient-to-tr from-primary/25 to-transparent'
-              }`}
-            />
+            {isGold ? (
+              <ElectricBorder color="var(--gold)" className="h-full w-full">
+                <Image src={image} alt={imageAlt} fill loading="lazy" sizes="(max-width: 768px) 90vw, 45vw" className="scale-110 object-cover transition-transform duration-500 will-change-transform" style={{ transform: 'translate(var(--tx,0), var(--ty,0))' }} />
+              </ElectricBorder>
+            ) : (
+              <div className="relative h-full w-full overflow-hidden rounded-2xl border border-border">
+                <Image src={image} alt={imageAlt} fill loading="lazy" sizes="(max-width: 768px) 90vw, 45vw" className="scale-110 object-cover transition-transform duration-500 will-change-transform" style={{ transform: 'translate(var(--tx,0), var(--ty,0))' }} />
+              </div>
+            )}
+            <div className={`pointer-events-none absolute inset-0 rounded-2xl opacity-0 transition-opacity duration-500 group-hover:opacity-100 ${isGold ? 'bg-gradient-to-tr from-gold/25 to-transparent' : 'bg-gradient-to-tr from-primary/25 to-transparent'}`} />
           </div>
         </div>
 
@@ -136,8 +129,9 @@ function ToolCard({
 
 export function ToolSections() {
   return (
-    <section id="workshop" className="relative py-24 sm:py-32">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <section id="workshop" className="relative overflow-hidden py-24 sm:py-32">
+      <ShapeWaves className="pointer-events-none absolute inset-x-0 top-16 h-72 opacity-35" />
+      <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-2xl text-center">
           <Reveal>
             <span className="font-[family-name:var(--font-mono)] text-xs uppercase tracking-[0.3em] text-primary">

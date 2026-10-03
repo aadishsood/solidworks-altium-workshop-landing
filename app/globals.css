@@ -502,3 +502,48 @@
   -ms-overflow-style: none;
   scrollbar-width: none;
 }
+
+/* React Bits-inspired workshop effects */
+.shape-waves { position:absolute; z-index:0; min-height:12rem; overflow:hidden; opacity:.72; -webkit-mask-image:linear-gradient(90deg,transparent,#000 14%,#000 86%,transparent); mask-image:linear-gradient(90deg,transparent,#000 14%,#000 86%,transparent); }
+.shape-waves-svg { width:100%; height:100%; min-height:inherit; }
+.shape-wave-line { fill:none; stroke-linecap:round; stroke-dasharray:12 20; animation:shape-wave-flow 12s linear infinite; }
+.shape-wave-line:nth-child(3n) { animation-duration:16s; animation-direction:reverse; }
+.shape-wave-line:nth-child(2n) { animation-delay:-4s; opacity:.62; }
+.shape-waves-fade { position:absolute; inset:0; background:radial-gradient(ellipse at center,transparent 30%,var(--background) 94%); pointer-events:none; }
+@keyframes shape-wave-flow { to { stroke-dashoffset:-160; transform:translateX(28px); } }
+.model-viewer { position:absolute; inset:0; overflow:hidden; perspective:900px; cursor:crosshair; touch-action:pan-y; }
+.model-viewer-stage { position:absolute; inset:-2%; transform-style:preserve-3d; transition:transform 500ms cubic-bezier(.22,1,.36,1); will-change:transform; }
+.model-viewer-image { object-fit:cover; transition:transform 700ms ease,filter 500ms ease; }
+.model-viewer.is-active .model-viewer-image { filter:saturate(1.08) contrast(1.04); transform:scale(1.045); }
+.model-viewer-scan { position:absolute; inset:0; background:linear-gradient(180deg,transparent 44%,color-mix(in srgb,var(--cyan) 28%,transparent) 50%,transparent 56%); background-size:100% 220%; mix-blend-mode:screen; opacity:.45; animation:model-scan 5s ease-in-out infinite; }
+.model-viewer-corner { position:absolute; width:38px; height:38px; border-color:var(--cyan); opacity:.75; }
+.model-viewer-corner-tl { top:14px; left:14px; border-top:1px solid; border-left:1px solid; }
+.model-viewer-corner-br { right:14px; bottom:14px; border-right:1px solid; border-bottom:1px solid; }
+.model-viewer-hint { position:absolute; right:14px; bottom:12px; z-index:2; padding:5px 8px; border:1px solid color-mix(in srgb,var(--cyan) 30%,transparent); border-radius:999px; background:color-mix(in srgb,var(--background) 72%,transparent); color:var(--cyan); font-family:var(--font-mono); font-size:9px; letter-spacing:.12em; text-transform:uppercase; opacity:0; transition:opacity 250ms ease; backdrop-filter:blur(8px); }
+.model-viewer:hover .model-viewer-hint,.model-viewer:focus-within .model-viewer-hint { opacity:1; }
+@keyframes model-scan { 0%,100% { background-position:0 -80%; } 50% { background-position:0 80%; } }
+.electric-border { position:relative; height:100%; min-height:100%; padding:2px; border-radius:1rem; isolation:isolate; overflow:hidden; }
+.electric-border-glow,.electric-border-line { position:absolute; inset:-35%; pointer-events:none; }
+.electric-border-glow { background:conic-gradient(from 20deg,transparent 0 18%,var(--electric-color) 22%,transparent 29% 51%,color-mix(in srgb,var(--electric-color) 70%,white) 57%,transparent 64% 100%); filter:blur(12px); opacity:.85; animation:electric-spin 5s linear infinite; }
+.electric-border-line { background:conic-gradient(from 20deg,transparent 0 18%,var(--electric-color) 22%,transparent 28% 51%,color-mix(in srgb,var(--electric-color) 78%,white) 57%,transparent 63% 100%); animation:electric-spin 4s linear infinite; }
+.electric-border-line-b { animation-duration:2.8s; animation-direction:reverse; opacity:.7; }
+.electric-border-content { position:relative; z-index:1; height:100%; overflow:hidden; border-radius:calc(1rem - 2px); background:var(--surface); }
+@keyframes electric-spin { to { transform:rotate(360deg); } }
+.lanyard-wrap { position:relative; width:min(100%,290px); padding-top:50px; }
+.lanyard-cord { position:absolute; top:-16px; left:50%; width:80px; height:86px; border:5px solid var(--primary); border-bottom:0; border-radius:46px 46px 0 0; transform:translateX(-50%) rotate(4deg); filter:drop-shadow(0 0 8px color-mix(in srgb,var(--primary) 55%,transparent)); }
+.lanyard-clip { position:absolute; top:39px; left:50%; width:20px; height:28px; border:2px solid var(--gold); border-radius:4px; background:var(--background); transform:translateX(-50%); }
+.lanyard-card { position:relative; overflow:hidden; padding:18px; border:1px solid color-mix(in srgb,var(--cyan) 38%,var(--border)); border-radius:16px; background:linear-gradient(145deg,color-mix(in srgb,var(--surface) 94%,transparent),color-mix(in srgb,var(--background) 92%,transparent)); box-shadow:0 18px 44px -24px var(--primary),inset 0 1px 0 rgba(255,255,255,.08); text-align:left; transform:rotate(-1deg); animation:lanyard-sway 5s ease-in-out infinite; }
+.lanyard-card::before { position:absolute; inset:0; background:linear-gradient(115deg,transparent 10%,color-mix(in srgb,var(--cyan) 8%,transparent) 52%,transparent 80%); content:''; pointer-events:none; }
+.lanyard-card-top,.lanyard-details span { display:flex; align-items:center; }
+.lanyard-card-top { justify-content:space-between; }
+.lanyard-brand,.lanyard-kicker,.lanyard-details { font-family:var(--font-mono); }
+.lanyard-brand { color:var(--cyan); font-size:9px; letter-spacing:.14em; }
+.lanyard-kicker { margin-top:18px; color:var(--muted-foreground); font-size:9px; letter-spacing:.18em; text-transform:uppercase; }
+.lanyard-name { margin-top:5px; color:var(--foreground); font-size:24px; font-weight:700; }
+.lanyard-details { display:grid; gap:7px; margin-top:15px; color:var(--muted-foreground); font-size:10px; }
+.lanyard-details span { min-width:0; gap:7px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+.lanyard-details svg { width:13px; height:13px; flex:none; color:var(--primary); }
+.lanyard-barcode { height:19px; margin-top:17px; opacity:.55; background:repeating-linear-gradient(90deg,var(--cyan) 0 2px,transparent 2px 5px,var(--primary) 5px 6px,transparent 6px 9px); }
+@keyframes lanyard-sway { 0%,100% { transform:rotate(-1deg) translateY(0); } 50% { transform:rotate(1.2deg) translateY(-3px); } }
+@media (max-width:640px) { .shape-waves { opacity:.42; } .model-viewer-hint { opacity:.8; font-size:8px; } .lanyard-wrap { padding-top:44px; } .lanyard-card { padding:15px; } }
+@media (prefers-reduced-motion:reduce) { .shape-wave-line,.model-viewer-scan,.electric-border-glow,.electric-border-line,.lanyard-card { animation:none; } .model-viewer-stage { transition:none; } }

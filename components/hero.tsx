@@ -4,6 +4,8 @@ import Image from 'next/image'
 import { useEffect, useState } from 'react'
 import { ArrowDown, CalendarDays, Clock, MapPin } from 'lucide-react'
 import { RegisterButton } from '@/components/register-button'
+import { ModelViewer } from '@/components/model-viewer'
+import { ShapeWaves } from '@/components/shape-waves'
 
 function Staged({
   children,
@@ -122,6 +124,7 @@ export function Hero() {
 
         {/* Right: layered visuals */}
         <div className="relative z-10">
+          <ShapeWaves className="pointer-events-none absolute -inset-x-24 -inset-y-16 opacity-60" />
           <div
             className={`relative mx-auto aspect-square w-full max-w-[520px] transition-all duration-1000 ease-out ${
               loaded ? 'scale-100 opacity-100' : 'scale-90 opacity-0'
@@ -133,13 +136,10 @@ export function Hero() {
 
             {/* Base SOLIDWORKS visual */}
             <div className="animate-float-slower absolute inset-0 overflow-hidden rounded-[1.75rem] border border-primary/30 shadow-[0_0_60px_-15px_var(--primary)]">
-              <Image
-                src="/solidworks-cad.png"
-                alt="SOLIDWORKS 3D mechanical CAD part with cyan wireframe overlay"
-                fill
-                priority
-                sizes="(max-width: 1024px) 90vw, 520px"
-                className="object-cover"
+              <ModelViewer
+                src="/solidworks-hero.png"
+                alt="SOLIDWORKS exploded-view 3D CAD assembly with blue construction lines"
+                className="absolute inset-0 h-full w-full"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-background/60 via-transparent to-transparent" />
               <span className="absolute left-4 top-4 rounded-md bg-background/70 px-2.5 py-1 font-[family-name:var(--font-mono)] text-[10px] tracking-widest text-primary backdrop-blur">

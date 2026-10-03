@@ -8,6 +8,7 @@ import {
 } from 'react'
 import { CalendarDays, CheckCircle2, ChevronDown, Loader2, MapPin, X, AlertCircle } from 'lucide-react'
 import { useRegistration } from '@/components/registration-context'
+import { Lanyard } from '@/components/lanyard'
 
 type FormState = {
   name: string
@@ -83,7 +84,7 @@ export function RegistrationModal() {
     'idle' | 'loading' | 'success' | 'error'
   >('idle')
   const [serverError, setServerError] = useState('')
-  const [registeredName, setRegisteredName] = useState('')
+  const [registeredDetails, setRegisteredDetails] = useState({ name: '', email: '', branch: '', course: '' })
 
   const dialogRef = useRef<HTMLDivElement>(null)
   const firstFieldRef = useRef<HTMLInputElement>(null)
@@ -176,7 +177,7 @@ export function RegistrationModal() {
         throw new Error(result.message || 'Registration failed. Please try again.')
       }
 
-      setRegisteredName(form.name.trim())
+      setRegisteredDetails({ name: form.name.trim(), email: form.email.trim(), branch: form.branch.trim(), course: form.interest || 'Both' })
       setStatus('success')
     } catch (err) {
       console.error(err)
@@ -221,61 +222,17 @@ export function RegistrationModal() {
         </button>
 
         {status === 'success' ? (
-          <div className="flex flex-col items-center px-8 py-14 text-center">
-            <div className="animate-scale-in flex h-20 w-20 items-center justify-center rounded-full bg-cyan/15 text-cyan ring-1 ring-cyan/30">
-              <CheckCircle2 className="h-10 w-10" />
+          <div className="flex flex-col items-center px-6 py-10 text-center sm:px-8">
+            <Lanyard {...registeredDetails} />
+            <h2 className="mt-5 font-[family-name:var(--font-display)] text-2xl font-bold">Registration Successful</h2>
+            <p className="mt-3 max-w-sm text-pretty text-sm leading-relaxed text-muted-foreground">Your workshop registration has been recorded successfully.</p>
+            <div className="mt-5 flex flex-wrap items-center justify-center gap-2 text-xs text-muted-foreground">
+              <span className="inline-flex items-center gap-1.5"><CalendarDays className="h-3.5 w-3.5 text-primary" />26–27 September 2026</span>
+              <span aria-hidden="true">•</span>
+              <span className="inline-flex items-center gap-1.5"><MapPin className="h-3.5 w-3.5 text-primary" />SRM Campus</span>
             </div>
-
-            <h2 className="mt-6 font-[family-name:var(--font-display)] text-2xl font-bold">
-              Registration Successful
-            </h2>
-
-            <p className="mt-3 max-w-sm text-pretty text-sm leading-relaxed text-muted-foreground">
-              Thank you for registering for the SOLIDWORKS &amp; ALTIUM
-              Workshop.
-            </p>
-
-            <dl className="mt-6 w-full max-w-xs space-y-2.5 rounded-2xl border border-border bg-background/40 p-5 text-left">
-              <div className="flex items-center justify-between gap-4">
-                <dt className="text-xs uppercase tracking-widest text-muted-foreground">
-                  Name
-                </dt>
-                <dd className="text-sm font-semibold">{registeredName}</dd>
-              </div>
-
-              <div className="flex items-center justify-between gap-4">
-                <dt className="text-xs uppercase tracking-widest text-muted-foreground">
-                  Date
-                </dt>
-
-                <dd className="inline-flex items-center gap-1.5 text-sm font-semibold">
-                  <CalendarDays className="h-3.5 w-3.5 text-primary" />
-                  26–27 September 2026
-                </dd>
-              </div>
-
-              <div className="flex items-center justify-between gap-4">
-                <dt className="text-xs uppercase tracking-widest text-muted-foreground">
-                  Venue
-                </dt>
-
-                <dd className="inline-flex items-center gap-1.5 text-sm font-semibold">
-                  <MapPin className="h-3.5 w-3.5 text-primary" />
-                  SRM Campus
-                </dd>
-              </div>
-            </dl>
-
-            <button
-              type="button"
-              onClick={close}
-              data-cursor="hover"
-              className="mt-7 rounded-full bg-primary px-7 py-3 text-sm font-semibold text-primary-foreground transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_10px_30px_-8px_var(--primary)]"
-            >
-              Close
-            </button>
-          </div>
-        ) : (
+            <button type="button" onClick={close} data-cursor="hover" className="mt-7 rounded-full bg-primary px-7 py-3 text-sm font-semibold text-primary-foreground transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_10px_30px_-8px_var(--primary)]">Close</button>
+          </div>        ) : (
           <>
             <div className="border-b border-border px-6 py-5 sm:px-8">
               <span className="font-[family-name:var(--font-mono)] text-[10px] uppercase tracking-[0.3em] text-primary">
