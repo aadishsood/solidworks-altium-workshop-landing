@@ -37,53 +37,53 @@
 /* Dark is the default identity of the site */
 :root {
   color-scheme: dark;
-  --background: #06111c;
-  --surface: #0c1b2a;
-  --foreground: #f5f7fb;
-  --card: #0b111a;
-  --card-foreground: #f5f7fb;
-  --popover: #0b111a;
-  --popover-foreground: #f5f7fb;
-  --primary: #38a4ff;
-  --primary-foreground: #03111e;
-  --secondary: #f4be4f;
-  --secondary-foreground: #100a01;
-  --muted: #121a26;
-  --muted-foreground: #8d96a5;
-  --accent: #101825;
-  --accent-foreground: #f5f7fb;
+  --background: #05070d;
+  --surface: #0b1020;
+  --foreground: #f8fafc;
+  --card: #080c16;
+  --card-foreground: #f8fafc;
+  --popover: #080c16;
+  --popover-foreground: #f8fafc;
+  --primary: #e3262e;
+  --primary-foreground: #ffffff;
+  --secondary: #1d6fe8;
+  --secondary-foreground: #ffffff;
+  --muted: #111827;
+  --muted-foreground: #9ca8ba;
+  --accent: #101a30;
+  --accent-foreground: #f8fafc;
   --destructive: #ef4444;
-  --cyan: #35d9e8;
-  --gold: #f4be4f;
-  --border: rgba(130, 190, 230, 0.16);
-  --input: rgba(130, 190, 230, 0.18);
-  --ring: #38a4ff;
+  --cyan: #4da3ff;
+  --gold: #ef3340;
+  --border: rgba(125, 164, 220, 0.18);
+  --input: rgba(125, 164, 220, 0.22);
+  --ring: #e3262e;
   --radius: 0.75rem;
 }
 
 .light {
   color-scheme: light;
-  --background: #eef5fb;
+  --background: #f4f7fb;
   --surface: #ffffff;
-  --foreground: #10263d;
+  --foreground: #111827;
   --card: #ffffff;
-  --card-foreground: #10263d;
+  --card-foreground: #111827;
   --popover: #ffffff;
-  --popover-foreground: #10263d;
-  --primary: #176fd1;
+  --popover-foreground: #111827;
+  --primary: #c81e2b;
   --primary-foreground: #ffffff;
-  --secondary: #b7791f;
+  --secondary: #1558c0;
   --secondary-foreground: #ffffff;
-  --muted: #e2edf6;
-  --muted-foreground: #516b82;
-  --accent: #dbeaf5;
-  --accent-foreground: #10263d;
+  --muted: #e8edf5;
+  --muted-foreground: #526174;
+  --accent: #e4ecf8;
+  --accent-foreground: #111827;
   --destructive: #dc2626;
-  --cyan: #078fa8;
-  --gold: #b7791f;
-  --border: rgba(24, 83, 120, 0.16);
-  --input: rgba(24, 83, 120, 0.18);
-  --ring: #176fd1;
+  --cyan: #0d72d9;
+  --gold: #c81e2b;
+  --border: rgba(35, 62, 105, 0.18);
+  --input: rgba(35, 62, 105, 0.2);
+  --ring: #c81e2b;
 }
 
 @layer base {
@@ -243,6 +243,10 @@
   opacity: 0.3;
   mix-blend-mode: multiply;
 }
+.light .spider-web {
+  opacity: 0.1;
+  mix-blend-mode: multiply;
+}
 .light .bg-orbit {
   opacity: 0.3;
 }
@@ -300,6 +304,15 @@
   opacity: 0.72;
   mix-blend-mode: screen;
 }
+.spider-web {
+  opacity: 0.22;
+  background:
+    repeating-conic-gradient(from 0deg at 50% 50%, transparent 0deg 14deg, color-mix(in srgb, var(--foreground) 16%, transparent) 14.35deg 14.7deg, transparent 15deg 30deg),
+    repeating-radial-gradient(circle at 50% 50%, transparent 0 74px, color-mix(in srgb, var(--foreground) 14%, transparent) 75px 76px, transparent 77px 150px);
+  -webkit-mask-image: radial-gradient(ellipse at center, black 0%, black 42%, transparent 74%);
+  mask-image: radial-gradient(ellipse at center, black 0%, black 42%, transparent 74%);
+  animation: web-breathe 16s ease-in-out infinite alternate;
+}
 .bg-orb {
   border-radius: 9999px;
   filter: blur(50px);
@@ -332,6 +345,10 @@
   0% { transform: translate3d(-1.5%, -1%, 0) scale(1.04); }
   50% { transform: translate3d(1%, 1.5%, 0) scale(1.08); }
   100% { transform: translate3d(2%, -0.5%, 0) scale(1.05); }
+}
+@keyframes web-breathe {
+  from { transform: scale(0.96) rotate(-2deg); opacity: 0.14; }
+  to { transform: scale(1.04) rotate(2deg); opacity: 0.24; }
 }
 @keyframes orb-drift {
   0% { transform: translate3d(-10px, 8px, 0) scale(0.96); }
