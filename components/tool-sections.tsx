@@ -163,8 +163,8 @@ export function ToolSections() {
             accent="gold"
             title="ALTIUM"
             subtitle="PCB Design • Electronics"
-            image="/altium-hero.png"
-            imageAlt="ALTIUM PCB layout with routed traces and component footprints"
+            image="/altium-pcb.png"
+            imageAlt="ALTIUM PCB circuit board with gold traces and components"
             reverse
             features={[
               'Schematic Design',
