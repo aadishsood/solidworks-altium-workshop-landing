@@ -135,30 +135,6 @@
   transform: none;
 }
 
-/* Animated tech grid background */
-.tech-grid {
-  background-image: linear-gradient(
-      to right,
-      color-mix(in srgb, var(--primary) 14%, transparent) 1px,
-      transparent 1px
-    ),
-    linear-gradient(
-      to bottom,
-      color-mix(in srgb, var(--primary) 14%, transparent) 1px,
-      transparent 1px
-    );
-  background-size: 56px 56px;
-  animation: grid-pan 24s linear infinite;
-}
-@keyframes grid-pan {
-  from {
-    background-position: 0 0;
-  }
-  to {
-    background-position: 48px 48px;
-  }
-}
-
 /* Glass surfaces and ambient motion */
 .glass-card {
   position: relative;
@@ -225,31 +201,6 @@
     linear-gradient(115deg, color-mix(in srgb, var(--primary) 6%, transparent), transparent 42%);
   box-shadow: 0 24px 70px -44px rgba(24, 83, 120, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.9);
 }
-.light .bg-scanlines {
-  background: repeating-linear-gradient(180deg, transparent 0, transparent 5px, rgba(24, 83, 120, 0.025) 6px, transparent 7px);
-  mix-blend-mode: multiply;
-}
-.light .bg-noise {
-  background-image: radial-gradient(rgba(24, 83, 120, 0.45) 0.7px, transparent 0.7px);
-}
-.light .bg-orb {
-  opacity: 0.09;
-}
-.light .bg-mesh {
-  opacity: 0.28;
-  mix-blend-mode: multiply;
-}
-.light .bg-spotlight {
-  opacity: 0.3;
-  mix-blend-mode: multiply;
-}
-.light .spider-web {
-  opacity: 0.1;
-  mix-blend-mode: multiply;
-}
-.light .bg-orbit {
-  opacity: 0.3;
-}
 .light .theme-select {
   color-scheme: light;
   background:
@@ -278,145 +229,6 @@
   color: var(--primary);
   transform: translateY(-50%) rotate(180deg);
 }
-.bg-aurora {
-  background:
-    radial-gradient(ellipse at 15% 20%, color-mix(in srgb, var(--primary) 16%, transparent), transparent 38%),
-    radial-gradient(ellipse at 85% 30%, color-mix(in srgb, var(--gold) 10%, transparent), transparent 34%),
-    radial-gradient(ellipse at 50% 90%, color-mix(in srgb, var(--cyan) 12%, transparent), transparent 42%);
-  filter: blur(16px) saturate(125%);
-  animation: aurora-shift 18s ease-in-out infinite alternate;
-}
-.bg-mesh {
-  background:
-    radial-gradient(ellipse at 12% 18%, color-mix(in srgb, var(--primary) 18%, transparent), transparent 32%),
-    radial-gradient(ellipse at 86% 22%, color-mix(in srgb, var(--gold) 13%, transparent), transparent 30%),
-    radial-gradient(ellipse at 66% 64%, color-mix(in srgb, var(--cyan) 14%, transparent), transparent 28%),
-    radial-gradient(ellipse at 28% 86%, color-mix(in srgb, var(--primary) 10%, transparent), transparent 34%);
-  filter: blur(34px) saturate(135%);
-  opacity: 0.78;
-  transform: translate3d(0, 0, 0) scale(1.04);
-  animation: mesh-drift 24s ease-in-out infinite alternate;
-}
-.bg-spotlight {
-  background:
-    radial-gradient(ellipse at 50% -10%, color-mix(in srgb, var(--primary) 12%, transparent), transparent 44%),
-    linear-gradient(118deg, transparent 20%, color-mix(in srgb, var(--cyan) 3%, transparent) 48%, transparent 72%);
-  opacity: 0.72;
-  mix-blend-mode: screen;
-}
-.spider-web {
-  opacity: 0.22;
-  background:
-    repeating-conic-gradient(from 0deg at 50% 50%, transparent 0deg 14deg, color-mix(in srgb, var(--foreground) 16%, transparent) 14.35deg 14.7deg, transparent 15deg 30deg),
-    repeating-radial-gradient(circle at 50% 50%, transparent 0 74px, color-mix(in srgb, var(--foreground) 14%, transparent) 75px 76px, transparent 77px 150px);
-  -webkit-mask-image: radial-gradient(ellipse at center, black 0%, black 42%, transparent 74%);
-  mask-image: radial-gradient(ellipse at center, black 0%, black 42%, transparent 74%);
-  animation: web-breathe 16s ease-in-out infinite alternate;
-}
-.bg-orb {
-  border-radius: 9999px;
-  filter: blur(50px);
-  opacity: 0.16;
-  animation: orb-drift 14s ease-in-out infinite alternate;
-}
-.bg-orb-primary { background: var(--primary); }
-.bg-orb-gold { background: var(--gold); animation-delay: -4s; }
-.bg-orb-cyan { background: var(--cyan); animation-delay: -8s; }
-.bg-scanlines {
-  background: repeating-linear-gradient(180deg, transparent 0, transparent 5px, rgba(255, 255, 255, 0.018) 6px, transparent 7px);
-  mix-blend-mode: screen;
-}
-.bg-noise {
-  background-image: radial-gradient(rgba(255,255,255,.8) 0.7px, transparent 0.7px);
-  background-size: 7px 7px;
-}
-.bg-orbit {
-  border-style: dashed;
-  opacity: 0.55;
-  transform: rotate(-18deg);
-  animation: orbit-spin 26s linear infinite;
-}
-.bg-orbit-two { animation-direction: reverse; animation-duration: 34s; }
-@keyframes aurora-shift {
-  0% { transform: translate3d(-2%, -1%, 0) scale(1); }
-  100% { transform: translate3d(2%, 2%, 0) scale(1.08); }
-}
-@keyframes mesh-drift {
-  0% { transform: translate3d(-1.5%, -1%, 0) scale(1.04); }
-  50% { transform: translate3d(1%, 1.5%, 0) scale(1.08); }
-  100% { transform: translate3d(2%, -0.5%, 0) scale(1.05); }
-}
-@keyframes web-breathe {
-  from { transform: scale(0.96) rotate(-2deg); opacity: 0.14; }
-  to { transform: scale(1.04) rotate(2deg); opacity: 0.24; }
-}
-@keyframes orb-drift {
-  0% { transform: translate3d(-10px, 8px, 0) scale(0.96); }
-  100% { transform: translate3d(18px, -18px, 0) scale(1.08); }
-}
-@keyframes orbit-spin {
-  to { transform: rotate(342deg); }
-}
-
-/* Animated blueprint circuit traces */
-.circuit-trace path {
-  stroke-dasharray: 14 10;
-  animation: circuit-flow 3.5s linear infinite;
-}
-.circuit-trace path:nth-child(even) {
-  animation-direction: reverse;
-  animation-duration: 4.5s;
-}
-@keyframes circuit-flow {
-  to {
-    stroke-dashoffset: -48;
-  }
-}
-.circuit-node circle {
-  animation: node-pulse 3s ease-in-out infinite;
-  transform-box: fill-box;
-  transform-origin: center;
-}
-.circuit-node circle:nth-child(3n) {
-  animation-delay: 1s;
-}
-.circuit-node circle:nth-child(3n + 1) {
-  animation-delay: 2s;
-}
-@keyframes node-pulse {
-  0%,
-  100% {
-    opacity: 0.4;
-    transform: scale(1);
-  }
-  50% {
-    opacity: 1;
-    transform: scale(1.6);
-  }
-}
-
-/* Drifting particles */
-.bg-particle {
-  position: absolute;
-  border-radius: 9999px;
-  opacity: 0.5;
-  animation-name: particle-drift;
-  animation-timing-function: ease-in-out;
-  animation-iteration-count: infinite;
-  filter: blur(0.5px);
-}
-@keyframes particle-drift {
-  0%,
-  100% {
-    transform: translateY(0) translateX(0);
-    opacity: 0.15;
-  }
-  50% {
-    transform: translateY(-40px) translateX(16px);
-    opacity: 0.7;
-  }
-}
-
 @keyframes float-slow {
   0%,
   100% {
@@ -433,18 +245,6 @@
   animation: float-slow 10s ease-in-out infinite;
 }
 
-@keyframes pulse-glow {
-  0%,
-  100% {
-    opacity: 0.35;
-  }
-  50% {
-    opacity: 0.7;
-  }
-}
-.animate-pulse-glow {
-  animation: pulse-glow 6s ease-in-out infinite;
-}
 
 @keyframes line-grow {
   from {
@@ -504,12 +304,6 @@
 }
 
 /* React Bits-inspired workshop effects */
-.shape-waves { position:absolute; z-index:0; min-height:12rem; overflow:hidden; opacity:.95; mix-blend-mode:screen; -webkit-mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent); mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent); }
-.shape-waves-svg { width:100%; height:100%; min-height:inherit; }
-.shape-wave-line { fill:none; stroke-linecap:round; stroke-dasharray:16 16; filter:drop-shadow(0 0 5px color-mix(in srgb,var(--cyan) 55%,transparent)); animation:shape-wave-flow 12s linear infinite; }
-.shape-wave-line:nth-child(3n) { animation-duration:16s; animation-direction:reverse; }
-.shape-wave-line:nth-child(2n) { animation-delay:-4s; opacity:.62; }
-.shape-waves-fade { position:absolute; inset:0; background:radial-gradient(ellipse at center,transparent 58%,color-mix(in srgb,var(--background) 52%,transparent) 100%); pointer-events:none; }
 @keyframes shape-wave-flow { to { stroke-dashoffset:-160; transform:translateX(28px); } }
 .model-viewer { position:absolute; inset:0; overflow:hidden; perspective:900px; cursor:crosshair; touch-action:pan-y; }
 .model-viewer-stage { position:absolute; inset:-2%; transform-style:preserve-3d; transition:transform 500ms cubic-bezier(.22,1,.36,1); will-change:transform; }
@@ -545,8 +339,8 @@
 .lanyard-details svg { width:13px; height:13px; flex:none; color:var(--primary); }
 .lanyard-barcode { height:19px; margin-top:17px; opacity:.55; background:repeating-linear-gradient(90deg,var(--cyan) 0 2px,transparent 2px 5px,var(--primary) 5px 6px,transparent 6px 9px); }
 @keyframes lanyard-sway { 0%,100% { transform:rotate(-1deg) translateY(0); } 50% { transform:rotate(1.2deg) translateY(-3px); } }
-@media (max-width:640px) { .shape-waves { opacity:.42; } .model-viewer-hint { opacity:.8; font-size:8px; } .lanyard-wrap { padding-top:44px; } .lanyard-card { padding:15px; } }
-@media (prefers-reduced-motion:reduce) { .shape-wave-line,.model-viewer-scan,.electric-border-glow,.electric-border-line,.lanyard-card { animation:none; } .model-viewer-stage { transition:none; } }
+@media (max-width:640px) { .model-viewer-hint { opacity:.8; font-size:8px; } .lanyard-wrap { padding-top:44px; } .lanyard-card { padding:15px; } }
+@media (prefers-reduced-motion:reduce) { .model-viewer-scan,.electric-border-glow,.electric-border-line,.lanyard-card { animation:none; } .model-viewer-stage { transition:none; } }
 .shape-waves-gpu {
   width: 100%;
   height: 100%;

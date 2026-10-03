@@ -1,6 +1,6 @@
 import { RegistrationProvider } from '@/components/registration-context'
-import { AnimatedBackground } from '@/components/animated-background'
 import { CustomCursor } from '@/components/custom-cursor'
+import { ShapeWaves } from '@/components/shape-waves'
 import { Navbar } from '@/components/navbar'
 import { Hero } from '@/components/hero'
 import { AboutSection } from '@/components/about-section'
@@ -16,7 +16,7 @@ export default function Page() {
   return (
     <RegistrationProvider>
       <CustomCursor />
-      <AnimatedBackground />
+      <ShapeWaves className="pointer-events-none fixed inset-0 -z-10 opacity-[0.18] sm:opacity-[0.22]" />
       <Navbar />
       <main>
         <Hero />

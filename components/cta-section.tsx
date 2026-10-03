@@ -10,10 +10,6 @@ export function CtaSection() {
           <div className="relative overflow-hidden rounded-[2rem] border border-border bg-surface/60 px-6 py-16 text-center backdrop-blur-sm sm:px-16">
             <div
               aria-hidden
-              className="tech-grid absolute inset-0 opacity-30 [mask-image:radial-gradient(ellipse_at_center,black,transparent_70%)]"
-            />
-            <div
-              aria-hidden
               className="absolute left-1/2 top-0 h-64 w-64 -translate-x-1/2 rounded-full bg-primary/20 blur-[100px]"
             />
             <div className="relative">

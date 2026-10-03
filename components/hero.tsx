@@ -5,7 +5,6 @@ import { useEffect, useState } from 'react'
 import { ArrowDown, CalendarDays, Clock, MapPin } from 'lucide-react'
 import { RegisterButton } from '@/components/register-button'
 import { ModelViewer } from '@/components/model-viewer'
-import { ShapeWaves } from '@/components/shape-waves'
 
 function Staged({
   children,
@@ -56,7 +55,6 @@ export function Hero() {
       id="home"
       className="relative flex min-h-screen items-center overflow-hidden pt-24 pb-16"
     >
-      <ShapeWaves className="pointer-events-none absolute inset-x-0 top-24 h-[34rem] opacity-90" />
       <div className="mx-auto grid w-full max-w-7xl grid-cols-1 items-center gap-12 px-4 sm:px-6 lg:grid-cols-[1.05fr_0.95fr] lg:px-8">
         {/* Left: copy */}
         <div className="relative z-10 text-center lg:text-left">

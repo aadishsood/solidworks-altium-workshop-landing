@@ -16,10 +16,6 @@ export function Footer() {
 
   return (
     <footer className="relative overflow-hidden border-t border-border">
-      <div
-        aria-hidden
-        className="tech-grid pointer-events-none absolute inset-0 opacity-20 [mask-image:linear-gradient(to_top,black,transparent)]"
-      />
       <div className="relative mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 gap-12 md:grid-cols-[1.4fr_1fr_1fr]">
           <div>
